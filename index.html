@@ -3,36 +3,171 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VexFlex Anticheat - Premium Gaming Protection</title>
+    <title>VexFlex Anticheat - NEXT LEVEL PROTECTION</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap');
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
-            color: white;
-            min-height: 100vh;
-            overflow-x: hidden;
+        :root {
+            --neon-blue: #00f5ff;
+            --neon-purple: #bf00ff;
+            --neon-green: #39ff14;
+            --dark-bg: #0a0a0a;
+            --darker-bg: #000000;
         }
 
-        /* Navigation */
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background: var(--darker-bg);
+            color: white;
+            overflow-x: hidden;
+            cursor: none;
+        }
+
+        /* CUSTOM CURSOR */
+        .cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            background: var(--neon-blue);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: difference;
+            transition: transform 0.1s;
+        }
+
+        .cursor-trail {
+            position: fixed;
+            width: 6px;
+            height: 6px;
+            background: var(--neon-purple);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            opacity: 0.7;
+        }
+
+        /* MATRIX RAIN BACKGROUND */
+        .matrix-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.05;
+        }
+
+        /* FLOATING PARTICLES */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: var(--neon-blue);
+            border-radius: 50%;
+            animation: float-up 8s infinite linear;
+        }
+
+        @keyframes float-up {
+            from {
+                transform: translateY(100vh) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            to {
+                transform: translateY(-100px) scale(1);
+                opacity: 0;
+            }
+        }
+
+        /* GLITCH EFFECTS */
+        .glitch {
+            position: relative;
+            animation: glitch-animation 2s infinite;
+        }
+
+        @keyframes glitch-animation {
+            0%, 100% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+        }
+
+        .glitch::before,
+        .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .glitch::before {
+            animation: glitch-1 0.5s infinite;
+            color: var(--neon-blue);
+            z-index: -1;
+        }
+
+        .glitch::after {
+            animation: glitch-2 0.5s infinite;
+            color: var(--neon-purple);
+            z-index: -2;
+        }
+
+        @keyframes glitch-1 {
+            0%, 100% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+        }
+
+        @keyframes glitch-2 {
+            0%, 100% { transform: translate(0); }
+            20% { transform: translate(2px, -2px); }
+            40% { transform: translate(2px, 2px); }
+            60% { transform: translate(-2px, -2px); }
+            80% { transform: translate(-2px, 2px); }
+        }
+
+        /* NAVIGATION */
         nav {
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(15, 15, 35, 0.9);
-            backdrop-filter: blur(10px);
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(20px);
             padding: 1rem 2rem;
             z-index: 1000;
-            border-bottom: 1px solid rgba(139, 69, 255, 0.2);
+            border-bottom: 2px solid var(--neon-blue);
+            box-shadow: 0 0 30px rgba(0, 245, 255, 0.5);
         }
 
         nav .nav-container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
@@ -40,488 +175,689 @@
         }
 
         .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            font-family: 'Orbitron', monospace;
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--neon-blue);
+            text-shadow: 0 0 20px var(--neon-blue);
+            animation: pulse-glow 2s infinite;
         }
 
-        .logo-icon {
-            width: 32px;
-            height: 32px;
-            background: linear-gradient(45deg, #8b45ff, #3b82f6);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 18px;
+        @keyframes pulse-glow {
+            0%, 100% { text-shadow: 0 0 20px var(--neon-blue); }
+            50% { text-shadow: 0 0 40px var(--neon-blue), 0 0 60px var(--neon-blue); }
         }
 
         .nav-links {
             display: flex;
-            gap: 2rem;
+            gap: 3rem;
             list-style: none;
         }
 
         .nav-links a {
             color: white;
             text-decoration: none;
-            transition: color 0.3s;
-            font-weight: 500;
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple));
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
         }
 
         .nav-links a:hover {
-            color: #8b45ff;
+            color: var(--neon-blue);
+            text-shadow: 0 0 10px var(--neon-blue);
         }
 
         .discord-btn {
-            background: linear-gradient(45deg, #5865f2, #7289da);
-            padding: 0.5rem 1.5rem;
-            border-radius: 25px;
-            text-decoration: none;
-            color: white;
-            font-weight: 600;
-            transition: transform 0.3s;
-        }
-
-        .discord-btn:hover {
-            transform: translateY(-2px);
-        }
-
-        /* Hero Section */
-        .hero {
-            padding: 120px 2rem 80px;
-            text-align: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .hero-content h1 {
-            font-size: 3.5rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-            background: linear-gradient(45deg, #8b45ff, #3b82f6, #06b6d4);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            line-height: 1.2;
-        }
-
-        .hero-content .subtitle {
-            font-size: 1.3rem;
-            color: #a1a1aa;
-            margin-bottom: 2rem;
-            line-height: 1.6;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn-primary {
-            background: linear-gradient(45deg, #8b45ff, #3b82f6);
-            padding: 1rem 2rem;
+            background: linear-gradient(45deg, var(--neon-purple), var(--neon-blue));
+            padding: 0.8rem 2rem;
             border: none;
             border-radius: 50px;
             color: white;
-            font-weight: 600;
+            font-weight: 700;
             text-decoration: none;
-            transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(139, 69, 255, 0.3);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 25px rgba(139, 69, 255, 0.4);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            border: 2px solid #8b45ff;
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            color: white;
-            font-weight: 600;
-            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 0 30px rgba(191, 0, 255, 0.5);
+            animation: btn-glow 2s infinite;
             transition: all 0.3s;
         }
 
-        .btn-secondary:hover {
-            background: rgba(139, 69, 255, 0.1);
-            transform: translateY(-3px);
+        @keyframes btn-glow {
+            0%, 100% { box-shadow: 0 0 30px rgba(191, 0, 255, 0.5); }
+            50% { box-shadow: 0 0 50px rgba(191, 0, 255, 0.8), 0 0 70px rgba(0, 245, 255, 0.3); }
         }
 
-        /* Hero Animation */
-        .hero-animation {
-            position: relative;
-            height: 400px;
+        .discord-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 60px rgba(191, 0, 255, 0.8);
+        }
+
+        /* HERO SECTION - ABSOLUTELY INSANE */
+        .hero {
+            height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-        }
-
-        .shield {
-            width: 200px;
-            height: 240px;
-            background: linear-gradient(45deg, #8b45ff, #3b82f6);
-            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
             position: relative;
-            animation: float 3s ease-in-out infinite;
-            box-shadow: 0 10px 30px rgba(139, 69, 255, 0.3);
+            background: radial-gradient(circle at 50% 50%, rgba(0, 245, 255, 0.1) 0%, transparent 50%);
         }
 
-        .shield::before {
-            content: '🛡️';
+        .hero-content {
+            text-align: center;
+            z-index: 10;
+        }
+
+        .hero-title {
+            font-family: 'Orbitron', monospace;
+            font-size: clamp(3rem, 8vw, 8rem);
+            font-weight: 900;
+            background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple), var(--neon-green), var(--neon-blue));
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient-shift 3s infinite, text-glow 2s infinite;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+        }
+
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes text-glow {
+            0%, 100% { filter: drop-shadow(0 0 20px var(--neon-blue)); }
+            50% { filter: drop-shadow(0 0 40px var(--neon-purple)); }
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            color: white;
+            margin-bottom: 3rem;
+            font-weight: 300;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            animation: fade-in-up 1s ease-out 0.5s both;
+        }
+
+        @keyframes fade-in-up {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 3D ROTATING SHIELD */
+        .shield-container {
             position: absolute;
+            right: 10%;
             top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 4rem;
+            transform: translateY(-50%);
+            perspective: 1000px;
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
+        .shield-3d {
+            width: 300px;
+            height: 300px;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: rotate-3d 10s infinite linear;
         }
 
-        /* Games Section */
+        @keyframes rotate-3d {
+            from { transform: rotateY(0deg) rotateX(0deg); }
+            to { transform: rotateY(360deg) rotateX(360deg); }
+        }
+
+        .shield-face {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8rem;
+            box-shadow: 0 0 100px rgba(0, 245, 255, 0.8);
+        }
+
+        .shield-face:nth-child(1) { transform: translateZ(150px); }
+        .shield-face:nth-child(2) { transform: rotateY(180deg) translateZ(150px); }
+
+        /* HOLOGRAPHIC CARDS */
         .games {
-            padding: 80px 2rem;
-            max-width: 1200px;
+            padding: 100px 2rem;
+            max-width: 1400px;
             margin: 0 auto;
         }
 
         .games h2 {
             text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            background: linear-gradient(45deg, #8b45ff, #3b82f6);
+            font-family: 'Orbitron', monospace;
+            font-size: 4rem;
+            font-weight: 900;
+            background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            margin-bottom: 4rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
         }
 
         .games-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 3rem;
         }
 
         .game-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(139, 69, 255, 0.2);
+            background: linear-gradient(145deg, rgba(0, 245, 255, 0.1), rgba(191, 0, 255, 0.1));
+            border: 2px solid transparent;
             border-radius: 20px;
-            padding: 2rem;
-            text-align: center;
-            transition: all 0.3s;
+            padding: 3rem;
             position: relative;
             overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.320, 1);
+            backdrop-filter: blur(10px);
         }
 
         .game-card::before {
             content: '';
             position: absolute;
             top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(139, 69, 255, 0.1), transparent);
-            transition: left 0.5s;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple), var(--neon-green), var(--neon-blue));
+            background-size: 300% 300%;
+            animation: gradient-shift 3s infinite;
+            opacity: 0;
+            transition: opacity 0.3s;
+            border-radius: 20px;
+            z-index: -1;
         }
 
         .game-card:hover::before {
-            left: 100%;
+            opacity: 1;
         }
 
         .game-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(139, 69, 255, 0.3);
+            transform: translateY(-20px) scale(1.05);
+            box-shadow: 0 20px 60px rgba(0, 245, 255, 0.4);
         }
 
         .game-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+            font-size: 5rem;
+            margin-bottom: 1.5rem;
+            display: block;
+            text-align: center;
+            animation: icon-float 3s ease-in-out infinite;
+        }
+
+        @keyframes icon-float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(5deg); }
         }
 
         .game-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: #8b45ff;
+            font-family: 'Orbitron', monospace;
+            font-size: 2rem;
+            text-align: center;
+            color: var(--neon-blue);
+            text-shadow: 0 0 20px var(--neon-blue);
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
         .game-card p {
-            color: #a1a1aa;
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
+            color: #ccc;
+            line-height: 1.8;
+            font-size: 1.1rem;
+            text-align: center;
+            margin-bottom: 2rem;
         }
 
         .game-status {
-            display: inline-block;
-            padding: 0.5rem 1rem;
-            background: linear-gradient(45deg, #10b981, #059669);
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 600;
-        }
-
-        /* Features Section */
-        .features {
-            background: rgba(0, 0, 0, 0.3);
-            padding: 80px 2rem;
-            margin: 80px 0;
-        }
-
-        .features-container {
-            max-width: 1200px;
-            margin: 0 auto;
+            display: block;
             text-align: center;
+            padding: 1rem 2rem;
+            background: linear-gradient(45deg, var(--neon-green), #00ff88);
+            border-radius: 30px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 0 30px rgba(57, 255, 20, 0.5);
+            animation: status-glow 2s infinite;
+        }
+
+        .status-dev {
+            background: linear-gradient(45deg, #ff6b00, #ff8f00) !important;
+            box-shadow: 0 0 30px rgba(255, 107, 0, 0.5) !important;
+        }
+
+        @keyframes status-glow {
+            0%, 100% { box-shadow: 0 0 30px rgba(57, 255, 20, 0.5); }
+            50% { box-shadow: 0 0 50px rgba(57, 255, 20, 0.8); }
+        }
+
+        /* FEATURES SECTION */
+        .features {
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(0, 245, 255, 0.05));
+            padding: 100px 2rem;
+            margin: 100px 0;
+            border-top: 2px solid var(--neon-blue);
+            border-bottom: 2px solid var(--neon-purple);
+            position: relative;
+        }
+
+        .features::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="%2300f5ff" opacity="0.1"/></svg>') repeat;
+            animation: bg-move 20s infinite linear;
+        }
+
+        @keyframes bg-move {
+            from { background-position: 0 0; }
+            to { background-position: 100px 100px; }
         }
 
         .features h2 {
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            background: linear-gradient(45deg, #8b45ff, #3b82f6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            text-align: center;
+            font-family: 'Orbitron', monospace;
+            font-size: 4rem;
+            font-weight: 900;
+            color: var(--neon-purple);
+            text-shadow: 0 0 30px var(--neon-purple);
+            margin-bottom: 4rem;
+            text-transform: uppercase;
         }
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
         .feature-item {
-            padding: 1.5rem;
+            text-align: center;
+            padding: 2rem;
+            transition: all 0.5s;
+            position: relative;
+        }
+
+        .feature-item:hover {
+            transform: scale(1.1);
         }
 
         .feature-item .icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            display: block;
+            animation: icon-spin 4s infinite linear;
+        }
+
+        @keyframes icon-spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
 
         .feature-item h3 {
-            font-size: 1.3rem;
+            font-family: 'Orbitron', monospace;
+            font-size: 1.5rem;
+            color: var(--neon-blue);
             margin-bottom: 1rem;
-            color: #8b45ff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
         .feature-item p {
-            color: #a1a1aa;
+            color: #ccc;
+            font-size: 1.1rem;
             line-height: 1.6;
         }
 
-        /* Footer */
+        /* CTA BUTTONS */
+        .cta-buttons {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
+            border: none;
+            padding: 1.5rem 3rem;
+            border-radius: 50px;
+            color: white;
+            font-family: 'Orbitron', monospace;
+            font-weight: 700;
+            font-size: 1.2rem;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s;
+            box-shadow: 0 0 40px rgba(0, 245, 255, 0.5);
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 50px rgba(0, 245, 255, 0.8);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--neon-green);
+            padding: 1.5rem 3rem;
+            border-radius: 50px;
+            color: var(--neon-green);
+            font-family: 'Orbitron', monospace;
+            font-weight: 700;
+            font-size: 1.2rem;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-secondary:hover {
+            background: var(--neon-green);
+            color: black;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 50px rgba(57, 255, 20, 0.5);
+        }
+
+        /* FOOTER */
         footer {
-            background: #0f0f23;
-            padding: 2rem;
+            background: var(--darker-bg);
+            border-top: 2px solid var(--neon-purple);
+            padding: 3rem 2rem;
             text-align: center;
-            border-top: 1px solid rgba(139, 69, 255, 0.2);
+            position: relative;
         }
 
         .footer-content {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
         }
 
         .social-links {
             display: flex;
             justify-content: center;
-            gap: 2rem;
+            gap: 3rem;
             margin-bottom: 2rem;
         }
 
         .social-links a {
-            color: #a1a1aa;
-            font-size: 1.5rem;
-            transition: color 0.3s;
+            color: white;
+            font-size: 2rem;
+            transition: all 0.3s;
+            text-decoration: none;
         }
 
         .social-links a:hover {
-            color: #8b45ff;
+            color: var(--neon-blue);
+            text-shadow: 0 0 20px var(--neon-blue);
+            transform: scale(1.5);
         }
 
-        /* Responsive */
+        /* MOBILE RESPONSIVE */
         @media (max-width: 768px) {
-            .hero {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-                padding: 100px 1rem 60px;
-            }
+            .nav-links { display: none; }
+            .shield-container { display: none; }
+            .hero-title { font-size: 3rem; }
+            .games-grid { grid-template-columns: 1fr; }
+            .cta-buttons { flex-direction: column; align-items: center; }
+        }
 
-            .hero-content h1 {
-                font-size: 2.5rem;
-            }
+        /* LOADING SCREEN */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--darker-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            animation: fade-out 2s ease-out 3s both;
+        }
 
-            .nav-links {
-                display: none;
-            }
+        .loading-text {
+            font-family: 'Orbitron', monospace;
+            font-size: 3rem;
+            color: var(--neon-blue);
+            text-shadow: 0 0 30px var(--neon-blue);
+            animation: loading-glow 1s infinite;
+        }
 
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
+        @keyframes loading-glow {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
 
-            .games-grid {
-                grid-template-columns: 1fr;
-            }
+        @keyframes fade-out {
+            to { opacity: 0; pointer-events: none; }
+        }
+
+        /* SCROLL ANIMATIONS */
+        .reveal {
+            opacity: 0;
+            transform: translateY(100px);
+            transition: all 0.8s cubic-bezier(0.23, 1, 0.320, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
+    <!-- LOADING SCREEN -->
+    <div class="loading-screen">
+        <div class="loading-text glitch" data-text="INITIALIZING...">INITIALIZING...</div>
+    </div>
+
+    <!-- CUSTOM CURSOR -->
+    <div class="cursor"></div>
+
+    <!-- MATRIX BACKGROUND -->
+    <canvas class="matrix-bg"></canvas>
+
+    <!-- FLOATING PARTICLES -->
+    <div class="particles"></div>
+
+    <!-- NAVIGATION -->
     <nav>
         <div class="nav-container">
-            <div class="logo">
-                <div class="logo-icon">V</div>
-                <span><strong>VexFlex</strong></span>
-            </div>
+            <div class="logo glitch" data-text="VEXFLEX">VEXFLEX</div>
             <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#games">Games</a></li>
-                <li><a href="#features">Features</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#home">HOME</a></li>
+                <li><a href="#games">GAMES</a></li>
+                <li><a href="#features">FEATURES</a></li>
+                <li><a href="#contact">CONTACT</a></li>
             </ul>
-            <a href="#" class="discord-btn">Discord beitreten</a>
+            <a href="#" class="discord-btn">JOIN DISCORD</a>
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- HERO SECTION -->
     <section id="home" class="hero">
         <div class="hero-content">
-            <h1>Premium <span>Anticheat</span> Solutions</h1>
-            <p class="subtitle">Hochwertige, maßgeschneiderte Anticheat-Systeme für FiveM, Minecraft und Roblox. Schütze deine Server vor Cheatern und sorge für ein faires Spielerlebnis.</p>
+            <h1 class="hero-title glitch" data-text="ANTICHEAT">ANTICHEAT</h1>
+            <p class="hero-subtitle">NEXT GENERATION PROTECTION FOR FIVEM • MINECRAFT • ROBLOX</p>
             <div class="cta-buttons">
-                <a href="#games" class="btn-primary">Anticheats entdecken</a>
-                <a href="https://github.com/Crex9/VexFlex-Anticheat" class="btn-secondary">GitHub</a>
+                <a href="#games" class="btn-primary">EXPLORE NOW</a>
+                <a href="https://github.com/Crex9/VexFlex-Anticheat" class="btn-secondary">GITHUB</a>
             </div>
         </div>
-        <div class="hero-animation">
-            <div class="shield"></div>
+        <div class="shield-container">
+            <div class="shield-3d">
+                <div class="shield-face">🛡️</div>
+                <div class="shield-face">⚡</div>
+            </div>
         </div>
     </section>
 
-    <!-- Games Section -->
+    <!-- GAMES SECTION -->
     <section id="games" class="games">
-        <h2>Unterstützte Spiele</h2>
+        <h2 class="reveal">SUPPORTED GAMES</h2>
         <div class="games-grid">
-            <div class="game-card">
+            <div class="game-card reveal">
                 <div class="game-icon">🚗</div>
-                <h3>FiveM</h3>
-                <p>Erweiterte Anticheat-Lösung für FiveM Server mit Echtzeit-Überwachung und automatischen Bans.</p>
-                <span class="game-status">✅ Verfügbar</span>
+                <h3>FIVEM</h3>
+                <p>Advanced real-time monitoring system with AI-powered cheat detection and automatic ban system.</p>
+                <span class="game-status">✅ ACTIVE</span>
             </div>
-            <div class="game-card">
+            <div class="game-card reveal">
                 <div class="game-icon">⛏️</div>
-                <h3>Minecraft</h3>
-                <p>Umfassender Schutz für Minecraft Server gegen alle gängigen Cheats und Exploits.</p>
-                <span class="game-status">✅ Verfügbar</span>
+                <h3>MINECRAFT</h3>
+                <p>Comprehensive protection against all known exploits, hacks, and cheating methods.</p>
+                <span class="game-status">✅ ACTIVE</span>
             </div>
-            <div class="game-card">
+            <div class="game-card reveal">
                 <div class="game-icon">🎮</div>
-                <h3>Roblox</h3>
-                <p>Spezialisierte Anticheat-Tools für Roblox Experiences mit fortschrittlicher Erkennung.</p>
-                <span class="game-status">🔄 In Entwicklung</span>
+                <h3>ROBLOX</h3>
+                <p>Cutting-edge detection algorithms designed specifically for Roblox environments.</p>
+                <span class="game-status status-dev">🔥 IN DEV</span>
             </div>
         </div>
     </section>
 
-    <!-- Features Section -->
+    <!-- FEATURES SECTION -->
     <section id="features" class="features">
-        <div class="features-container">
-            <h2>Warum VexFlex?</h2>
-            <div class="features-grid">
-                <div class="feature-item">
-                    <div class="icon">⚡</div>
-                    <h3>Blitzschnell</h3>
-                    <p>Minimale Performance-Auswirkung bei maximaler Schutzwirkung</p>
-                </div>
-                <div class="feature-item">
-                    <div class="icon">🎯</div>
-                    <h3>Präzise Erkennung</h3>
-                    <p>Fortschrittliche Algorithmen für zuverlässige Cheat-Erkennung</p>
-                </div>
-                <div class="feature-item">
-                    <div class="icon">🔧</div>
-                    <h3>Anpassbar</h3>
-                    <p>Vollständig konfigurierbar für deine spezifischen Anforderungen</p>
-                </div>
-                <div class="feature-item">
-                    <div class="icon">🛠️</div>
-                    <h3>24/7 Support</h3>
-                    <p>Professioneller Support und regelmäßige Updates</p>
-                </div>
+        <h2 class="reveal">WHY VEXFLEX?</h2>
+        <div class="features-grid">
+            <div class="feature-item reveal">
+                <div class="icon">⚡</div>
+                <h3>LIGHTNING FAST</h3>
+                <p>Zero-lag protection with microsecond response times</p>
+            </div>
+            <div class="feature-item reveal">
+                <div class="icon">🎯</div>
+                <h3>AI POWERED</h3>
+                <p>Machine learning algorithms for perfect accuracy</p>
+            </div>
+            <div class="feature-item reveal">
+                <div class="icon">🔧</div>
+                <h3>FULLY CUSTOM</h3>
+                <p>Tailored solutions for your specific needs</p>
+            </div>
+            <div class="feature-item reveal">
+                <div class="icon">🛠️</div>
+                <h3>24/7 SUPPORT</h3>
+                <p>Round-the-clock assistance and updates</p>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- FOOTER -->
     <footer id="contact">
         <div class="footer-content">
             <div class="social-links">
-                <a href="https://github.com/Crex9">🐙 GitHub</a>
-                <a href="#">💬 Discord</a>
-                <a href="#">📧 Email</a>
+                <a href="https://github.com/Crex9">🐙</a>
+                <a href="#">💬</a>
+                <a href="#">📧</a>
+                <a href="#">🎮</a>
             </div>
-            <p>&copy; 2024 VexFlex Anticheat. Alle Rechte vorbehalten.</p>
-            <p style="color: #666; margin-top: 1rem;">Entwickelt von Crex9</p>
+            <p style="font-family: 'Orbitron', monospace; font-size: 1.2rem; color: var(--neon-blue);">© 2024 VEXFLEX ANTICHEAT - NEXT LEVEL PROTECTION</p>
+            <p style="color: #666; margin-top: 1rem;">Developed by Crex9</p>
         </div>
     </footer>
 
     <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
+        // CUSTOM CURSOR
+        const cursor = document.querySelector('.cursor');
+        const trails = [];
+        const trailCount = 10;
+
+        // Create cursor trails
+        for (let i = 0; i < trailCount; i++) {
+            const trail = document.createElement('div');
+            trail.className = 'cursor-trail';
+            document.body.appendChild(trail);
+            trails.push(trail);
+        }
+
+        let mouseX = 0, mouseY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            
+            cursor.style.left = mouseX + 'px';
+            cursor.style.top = mouseY + 'px';
+
+            // Update trails with delay
+            trails.forEach((trail, index) => {
+                setTimeout(() => {
+                    trail.style.left = mouseX + 'px';
+                    trail.style.top = mouseY + 'px';
+                }, index * 50);
             });
         });
 
-        // Add scroll effect to navigation
-        window.addEventListener('scroll', () => {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 100) {
-                nav.style.background = 'rgba(15, 15, 35, 0.95)';
-            } else {
-                nav.style.background = 'rgba(15, 15, 35, 0.9)';
-            }
-        });
+        // MATRIX RAIN EFFECT
+        const canvas = document.querySelector('.matrix-bg');
+        const ctx = canvas.getContext('2d');
 
-        // Add intersection observer for animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        // Observe all game cards and feature items
-        document.querySelectorAll('.game-card, .feature-item').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'all 0.6s ease';
-            observer.observe(el);
-        });
-    </script>
-</body>
-</html>
+        const matrix = "
