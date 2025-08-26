@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VexFlex Anticheat - NEXT LEVEL PROTECTION</title>
+    <title>VexFlex - Premium Anticheat Solutions</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
         
         * {
             margin: 0;
@@ -13,377 +13,431 @@
             box-sizing: border-box;
         }
 
-        :root {
-            --neon-blue: #00f5ff;
-            --neon-purple: #bf00ff;
-            --neon-green: #39ff14;
-            --dark-bg: #0a0a0a;
-            --darker-bg: #000000;
-        }
-
         body {
-            font-family: 'Rajdhani', sans-serif;
-            background: var(--darker-bg);
+            font-family: 'Inter', sans-serif;
+            background: #0f0f1a;
             color: white;
             overflow-x: hidden;
-            cursor: none;
+            line-height: 1.6;
         }
 
-        /* CUSTOM CURSOR */
-        .cursor {
-            position: fixed;
-            width: 20px;
-            height: 20px;
-            background: var(--neon-blue);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9999;
-            mix-blend-mode: difference;
-            transition: transform 0.1s;
-        }
-
-        .cursor-trail {
-            position: fixed;
-            width: 6px;
-            height: 6px;
-            background: var(--neon-purple);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9998;
-            opacity: 0.7;
-        }
-
-        /* MATRIX RAIN BACKGROUND */
-        .matrix-bg {
+        /* Background Elements */
+        .bg-elements {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
+            pointer-events: none;
             z-index: -1;
-            opacity: 0.05;
         }
 
-        /* FLOATING PARTICLES */
-        .particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .particle {
+        .star {
             position: absolute;
             width: 2px;
             height: 2px;
-            background: var(--neon-blue);
+            background: rgba(147, 51, 234, 0.6);
             border-radius: 50%;
-            animation: float-up 8s infinite linear;
+            animation: twinkle 3s infinite;
         }
 
-        @keyframes float-up {
-            from {
-                transform: translateY(100vh) scale(0);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            to {
-                transform: translateY(-100px) scale(1);
-                opacity: 0;
-            }
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
         }
 
-        /* GLITCH EFFECTS */
-        .glitch {
-            position: relative;
-            animation: glitch-animation 2s infinite;
-        }
-
-        @keyframes glitch-animation {
-            0%, 100% { transform: translate(0); }
-            20% { transform: translate(-2px, 2px); }
-            40% { transform: translate(-2px, -2px); }
-            60% { transform: translate(2px, 2px); }
-            80% { transform: translate(2px, -2px); }
-        }
-
-        .glitch::before,
-        .glitch::after {
-            content: attr(data-text);
+        .gradient-orb {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(147, 51, 234, 0.15) 0%, transparent 70%);
+            animation: float 6s ease-in-out infinite;
         }
 
-        .glitch::before {
-            animation: glitch-1 0.5s infinite;
-            color: var(--neon-blue);
-            z-index: -1;
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
         }
 
-        .glitch::after {
-            animation: glitch-2 0.5s infinite;
-            color: var(--neon-purple);
-            z-index: -2;
-        }
-
-        @keyframes glitch-1 {
-            0%, 100% { transform: translate(0); }
-            20% { transform: translate(-2px, 2px); }
-            40% { transform: translate(-2px, -2px); }
-            60% { transform: translate(2px, 2px); }
-            80% { transform: translate(2px, -2px); }
-        }
-
-        @keyframes glitch-2 {
-            0%, 100% { transform: translate(0); }
-            20% { transform: translate(2px, -2px); }
-            40% { transform: translate(2px, 2px); }
-            60% { transform: translate(-2px, -2px); }
-            80% { transform: translate(-2px, 2px); }
-        }
-
-        /* NAVIGATION */
+        /* Navigation */
         nav {
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(0, 0, 0, 0.9);
+            background: rgba(15, 15, 26, 0.95);
             backdrop-filter: blur(20px);
-            padding: 1rem 2rem;
+            padding: 1rem 0;
             z-index: 1000;
-            border-bottom: 2px solid var(--neon-blue);
-            box-shadow: 0 0 30px rgba(0, 245, 255, 0.5);
+            border-bottom: 1px solid rgba(147, 51, 234, 0.1);
         }
 
-        nav .nav-container {
-            max-width: 1400px;
+        .nav-container {
+            max-width: 1200px;
             margin: 0 auto;
+            padding: 0 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
         .logo {
-            font-family: 'Orbitron', monospace;
-            font-size: 1.8rem;
-            font-weight: 900;
-            color: var(--neon-blue);
-            text-shadow: 0 0 20px var(--neon-blue);
-            animation: pulse-glow 2s infinite;
-        }
-
-        @keyframes pulse-glow {
-            0%, 100% { text-shadow: 0 0 20px var(--neon-blue); }
-            50% { text-shadow: 0 0 40px var(--neon-blue), 0 0 60px var(--neon-blue); }
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #9333ea;
+            text-decoration: none;
         }
 
         .nav-links {
             display: flex;
-            gap: 3rem;
+            gap: 2rem;
             list-style: none;
         }
 
         .nav-links a {
-            color: white;
+            color: #a1a1aa;
             text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            position: relative;
-            transition: all 0.3s;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple));
-            transition: width 0.3s;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
+            font-weight: 500;
+            transition: color 0.3s ease;
         }
 
         .nav-links a:hover {
-            color: var(--neon-blue);
-            text-shadow: 0 0 10px var(--neon-blue);
+            color: white;
         }
 
         .discord-btn {
-            background: linear-gradient(45deg, var(--neon-purple), var(--neon-blue));
-            padding: 0.8rem 2rem;
-            border: none;
-            border-radius: 50px;
+            background: #9333ea;
             color: white;
-            font-weight: 700;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
             text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            box-shadow: 0 0 30px rgba(191, 0, 255, 0.5);
-            animation: btn-glow 2s infinite;
-            transition: all 0.3s;
-        }
-
-        @keyframes btn-glow {
-            0%, 100% { box-shadow: 0 0 30px rgba(191, 0, 255, 0.5); }
-            50% { box-shadow: 0 0 50px rgba(191, 0, 255, 0.8), 0 0 70px rgba(0, 245, 255, 0.3); }
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .discord-btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 60px rgba(191, 0, 255, 0.8);
+            background: #7c3aed;
+            transform: translateY(-2px);
         }
 
-        /* HERO SECTION - ABSOLUTELY INSANE */
+        /* Hero Section */
         .hero {
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
+            text-align: center;
+            padding: 0 2rem;
             position: relative;
-            background: radial-gradient(circle at 50% 50%, rgba(0, 245, 255, 0.1) 0%, transparent 50%);
         }
 
         .hero-content {
-            text-align: center;
-            z-index: 10;
+            max-width: 1000px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(147, 51, 234, 0.1);
+            border: 1px solid rgba(147, 51, 234, 0.3);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            color: #9333ea;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
         }
 
         .hero-title {
-            font-family: 'Orbitron', monospace;
-            font-size: clamp(3rem, 8vw, 8rem);
-            font-weight: 900;
-            background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple), var(--neon-green), var(--neon-blue));
-            background-size: 300% 300%;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-title .highlight {
+            background: linear-gradient(135deg, #9333ea, #c084fc);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            animation: gradient-shift 3s infinite, text-glow 2s infinite;
-            margin-bottom: 2rem;
-            text-transform: uppercase;
-            letter-spacing: 5px;
-        }
-
-        @keyframes gradient-shift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        @keyframes text-glow {
-            0%, 100% { filter: drop-shadow(0 0 20px var(--neon-blue)); }
-            50% { filter: drop-shadow(0 0 40px var(--neon-purple)); }
         }
 
         .hero-subtitle {
-            font-size: clamp(1.2rem, 3vw, 2rem);
-            color: white;
+            font-size: 1.25rem;
+            color: #a1a1aa;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-features {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
             margin-bottom: 3rem;
-            font-weight: 300;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-            animation: fade-in-up 1s ease-out 0.5s both;
+            flex-wrap: wrap;
         }
 
-        @keyframes fade-in-up {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .feature-check {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #10b981;
+            font-weight: 500;
         }
 
-        /* 3D ROTATING SHIELD */
-        .shield-container {
-            position: absolute;
-            right: 10%;
-            top: 50%;
-            transform: translateY(-50%);
-            perspective: 1000px;
-        }
-
-        .shield-3d {
-            width: 300px;
-            height: 300px;
-            position: relative;
-            transform-style: preserve-3d;
-            animation: rotate-3d 10s infinite linear;
-        }
-
-        @keyframes rotate-3d {
-            from { transform: rotateY(0deg) rotateX(0deg); }
-            to { transform: rotateY(360deg) rotateX(360deg); }
-        }
-
-        .shield-face {
-            position: absolute;
-            width: 300px;
-            height: 300px;
-            background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
+        .check-icon {
+            width: 20px;
+            height: 20px;
+            background: #10b981;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 8rem;
-            box-shadow: 0 0 100px rgba(0, 245, 255, 0.8);
+            font-size: 12px;
+            color: white;
         }
 
-        .shield-face:nth-child(1) { transform: translateZ(150px); }
-        .shield-face:nth-child(2) { transform: rotateY(180deg) translateZ(150px); }
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
 
-        /* HOLOGRAPHIC CARDS */
+        .btn-primary {
+            background: #9333ea;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary:hover {
+            background: #7c3aed;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(147, 51, 234, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            padding: 1rem 2rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-secondary:hover {
+            border-color: #9333ea;
+            background: rgba(147, 51, 234, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Dashboard Preview */
+        .dashboard-preview {
+            margin-top: 4rem;
+            position: relative;
+        }
+
+        .dashboard-mockup {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .dashboard-header {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .dashboard-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .dashboard-controls {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .control-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ef4444;
+        }
+
+        .control-dot:nth-child(2) {
+            background: #f59e0b;
+        }
+
+        .control-dot:nth-child(3) {
+            background: #10b981;
+        }
+
+        .dashboard-content {
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 200px 1fr 1fr;
+            gap: 2rem;
+            min-height: 400px;
+        }
+
+        .dashboard-sidebar {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+
+        .sidebar-item {
+            padding: 0.75rem;
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+            color: #a1a1aa;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar-item.active {
+            background: #9333ea;
+            color: white;
+        }
+
+        .dashboard-section {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .section-title {
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #e5e7eb;
+        }
+
+        .option-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .option-item:last-child {
+            border-bottom: none;
+        }
+
+        .option-name {
+            color: #a1a1aa;
+            font-size: 0.9rem;
+        }
+
+        .toggle {
+            width: 40px;
+            height: 20px;
+            background: #9333ea;
+            border-radius: 20px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .toggle::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            right: 2px;
+            width: 16px;
+            height: 16px;
+            background: white;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .slider {
+            width: 120px;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            position: relative;
+        }
+
+        .slider::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: -2px;
+            width: 10px;
+            height: 10px;
+            background: #9333ea;
+            border-radius: 50%;
+            left: 75%;
+        }
+
+        /* Games Section */
         .games {
-            padding: 100px 2rem;
-            max-width: 1400px;
+            padding: 6rem 2rem;
+            max-width: 1200px;
             margin: 0 auto;
         }
 
-        .games h2 {
+        .section-header {
             text-align: center;
-            font-family: 'Orbitron', monospace;
-            font-size: 4rem;
-            font-weight: 900;
-            background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
             margin-bottom: 4rem;
-            text-transform: uppercase;
-            letter-spacing: 3px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            color: #a1a1aa;
+            font-size: 1.1rem;
         }
 
         .games-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
         }
 
         .game-card {
-            background: linear-gradient(145deg, rgba(0, 245, 255, 0.1), rgba(191, 0, 255, 0.1));
-            border: 2px solid transparent;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 20px;
-            padding: 3rem;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
-            transition: all 0.5s cubic-bezier(0.23, 1, 0.320, 1);
-            backdrop-filter: blur(10px);
         }
 
         .game-card::before {
@@ -392,548 +446,412 @@
             top: 0;
             left: 0;
             right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple), var(--neon-green), var(--neon-blue));
-            background-size: 300% 300%;
-            animation: gradient-shift 3s infinite;
-            opacity: 0;
-            transition: opacity 0.3s;
-            border-radius: 20px;
-            z-index: -1;
-        }
-
-        .game-card:hover::before {
-            opacity: 1;
+            height: 4px;
+            background: linear-gradient(90deg, #9333ea, #c084fc);
         }
 
         .game-card:hover {
-            transform: translateY(-20px) scale(1.05);
-            box-shadow: 0 20px 60px rgba(0, 245, 255, 0.4);
+            transform: translateY(-10px);
+            border-color: rgba(147, 51, 234, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
         }
 
         .game-icon {
-            font-size: 5rem;
-            margin-bottom: 1.5rem;
-            display: block;
-            text-align: center;
-            animation: icon-float 3s ease-in-out infinite;
-        }
-
-        @keyframes icon-float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-10px) rotate(5deg); }
+            font-size: 3rem;
+            margin-bottom: 1rem;
         }
 
         .game-card h3 {
-            font-family: 'Orbitron', monospace;
-            font-size: 2rem;
-            text-align: center;
-            color: var(--neon-blue);
-            text-shadow: 0 0 20px var(--neon-blue);
-            margin-bottom: 1.5rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #e5e7eb;
         }
 
         .game-card p {
-            color: #ccc;
-            line-height: 1.8;
-            font-size: 1.1rem;
-            text-align: center;
-            margin-bottom: 2rem;
+            color: #a1a1aa;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
         }
 
         .game-status {
-            display: block;
-            text-align: center;
-            padding: 1rem 2rem;
-            background: linear-gradient(45deg, var(--neon-green), #00ff88);
-            border-radius: 30px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            box-shadow: 0 0 30px rgba(57, 255, 20, 0.5);
-            animation: status-glow 2s infinite;
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
         }
 
-        .status-dev {
-            background: linear-gradient(45deg, #ff6b00, #ff8f00) !important;
-            box-shadow: 0 0 30px rgba(255, 107, 0, 0.5) !important;
+        .status-available {
+            background: rgba(16, 185, 129, 0.1);
+            color: #10b981;
+            border: 1px solid rgba(16, 185, 129, 0.3);
         }
 
-        @keyframes status-glow {
-            0%, 100% { box-shadow: 0 0 30px rgba(57, 255, 20, 0.5); }
-            50% { box-shadow: 0 0 50px rgba(57, 255, 20, 0.8); }
+        .status-development {
+            background: rgba(245, 158, 11, 0.1);
+            color: #f59e0b;
+            border: 1px solid rgba(245, 158, 11, 0.3);
         }
 
-        /* FEATURES SECTION */
+        /* Features Section */
         .features {
-            background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(0, 245, 255, 0.05));
-            padding: 100px 2rem;
-            margin: 100px 0;
-            border-top: 2px solid var(--neon-blue);
-            border-bottom: 2px solid var(--neon-purple);
-            position: relative;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 6rem 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        .features::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="%2300f5ff" opacity="0.1"/></svg>') repeat;
-            animation: bg-move 20s infinite linear;
-        }
-
-        @keyframes bg-move {
-            from { background-position: 0 0; }
-            to { background-position: 100px 100px; }
-        }
-
-        .features h2 {
-            text-align: center;
-            font-family: 'Orbitron', monospace;
-            font-size: 4rem;
-            font-weight: 900;
-            color: var(--neon-purple);
-            text-shadow: 0 0 30px var(--neon-purple);
-            margin-bottom: 4rem;
-            text-transform: uppercase;
+        .features-container {
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 3rem;
-            max-width: 1400px;
-            margin: 0 auto;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
         }
 
         .feature-item {
             text-align: center;
-            padding: 2rem;
-            transition: all 0.5s;
-            position: relative;
+            padding: 1.5rem;
         }
 
-        .feature-item:hover {
-            transform: scale(1.1);
-        }
-
-        .feature-item .icon {
-            font-size: 4rem;
-            margin-bottom: 1.5rem;
-            display: block;
-            animation: icon-spin 4s infinite linear;
-        }
-
-        @keyframes icon-spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(147, 51, 234, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 1.5rem;
         }
 
         .feature-item h3 {
-            font-family: 'Orbitron', monospace;
-            font-size: 1.5rem;
-            color: var(--neon-blue);
+            font-size: 1.3rem;
+            font-weight: 700;
             margin-bottom: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+            color: #e5e7eb;
         }
 
         .feature-item p {
-            color: #ccc;
-            font-size: 1.1rem;
+            color: #a1a1aa;
             line-height: 1.6;
         }
 
-        /* CTA BUTTONS */
-        .cta-buttons {
-            display: flex;
-            gap: 2rem;
-            justify-content: center;
-            margin-top: 3rem;
-            flex-wrap: wrap;
-        }
-
-        .btn-primary {
-            background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
-            border: none;
-            padding: 1.5rem 3rem;
-            border-radius: 50px;
-            color: white;
-            font-family: 'Orbitron', monospace;
-            font-weight: 700;
-            font-size: 1.2rem;
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s;
-            box-shadow: 0 0 40px rgba(0, 245, 255, 0.5);
-        }
-
-        .btn-primary::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s;
-        }
-
-        .btn-primary:hover::before {
-            left: 100%;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 50px rgba(0, 245, 255, 0.8);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            border: 2px solid var(--neon-green);
-            padding: 1.5rem 3rem;
-            border-radius: 50px;
-            color: var(--neon-green);
-            font-family: 'Orbitron', monospace;
-            font-weight: 700;
-            font-size: 1.2rem;
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn-secondary:hover {
-            background: var(--neon-green);
-            color: black;
-            transform: translateY(-5px);
-            box-shadow: 0 10px 50px rgba(57, 255, 20, 0.5);
-        }
-
-        /* FOOTER */
+        /* Footer */
         footer {
-            background: var(--darker-bg);
-            border-top: 2px solid var(--neon-purple);
-            padding: 3rem 2rem;
-            text-align: center;
-            position: relative;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 3rem 2rem 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .footer-content {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
+            text-align: center;
         }
 
         .social-links {
             display: flex;
             justify-content: center;
-            gap: 3rem;
+            gap: 2rem;
             margin-bottom: 2rem;
         }
 
-        .social-links a {
-            color: white;
-            font-size: 2rem;
-            transition: all 0.3s;
+        .social-link {
+            color: #a1a1aa;
             text-decoration: none;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
         }
 
-        .social-links a:hover {
-            color: var(--neon-blue);
-            text-shadow: 0 0 20px var(--neon-blue);
-            transform: scale(1.5);
+        .social-link:hover {
+            color: #9333ea;
         }
 
-        /* MOBILE RESPONSIVE */
+        .footer-text {
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+
+        /* Mobile Responsive */
         @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .shield-container { display: none; }
-            .hero-title { font-size: 3rem; }
-            .games-grid { grid-template-columns: 1fr; }
-            .cta-buttons { flex-direction: column; align-items: center; }
+            .nav-links {
+                display: none;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .dashboard-content {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+                padding: 1rem;
+            }
+
+            .games-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-features {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
         }
 
-        /* LOADING SCREEN */
-        .loading-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--darker-bg);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 10000;
-            animation: fade-out 2s ease-out 3s both;
-        }
-
-        .loading-text {
-            font-family: 'Orbitron', monospace;
-            font-size: 3rem;
-            color: var(--neon-blue);
-            text-shadow: 0 0 30px var(--neon-blue);
-            animation: loading-glow 1s infinite;
-        }
-
-        @keyframes loading-glow {
-            0%, 100% { opacity: 0.5; }
-            50% { opacity: 1; }
-        }
-
-        @keyframes fade-out {
-            to { opacity: 0; pointer-events: none; }
-        }
-
-        /* SCROLL ANIMATIONS */
-        .reveal {
+        /* Smooth animations */
+        .fade-in {
             opacity: 0;
-            transform: translateY(100px);
-            transition: all 0.8s cubic-bezier(0.23, 1, 0.320, 1);
+            transform: translateY(30px);
+            transition: all 0.6s ease;
         }
 
-        .reveal.active {
+        .fade-in.visible {
             opacity: 1;
             transform: translateY(0);
         }
     </style>
 </head>
 <body>
-    <!-- LOADING SCREEN -->
-    <div class="loading-screen">
-        <div class="loading-text glitch" data-text="INITIALIZING...">INITIALIZING...</div>
-    </div>
+    <!-- Background Elements -->
+    <div class="bg-elements" id="bgElements"></div>
 
-    <!-- CUSTOM CURSOR -->
-    <div class="cursor"></div>
-
-    <!-- MATRIX BACKGROUND -->
-    <canvas class="matrix-bg"></canvas>
-
-    <!-- FLOATING PARTICLES -->
-    <div class="particles"></div>
-
-    <!-- NAVIGATION -->
+    <!-- Navigation -->
     <nav>
         <div class="nav-container">
-            <div class="logo glitch" data-text="VEXFLEX">VEXFLEX</div>
+            <a href="#" class="logo">VEXFLEX</a>
             <ul class="nav-links">
-                <li><a href="#home">HOME</a></li>
-                <li><a href="#games">GAMES</a></li>
-                <li><a href="#features">FEATURES</a></li>
-                <li><a href="#contact">CONTACT</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#how-it-works">How it Works</a></li>
+                <li><a href="#games">Games</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#faq">FAQ</a></li>
             </ul>
-            <a href="#" class="discord-btn">JOIN DISCORD</a>
+            <a href="#" class="discord-btn">
+                <span>💬</span>
+                Join our Discord
+            </a>
         </div>
     </nav>
 
-    <!-- HERO SECTION -->
-    <section id="home" class="hero">
+    <!-- Hero Section -->
+    <section class="hero">
         <div class="hero-content">
-            <h1 class="hero-title glitch" data-text="ANTICHEAT">ANTICHEAT</h1>
-            <p class="hero-subtitle">NEXT GENERATION PROTECTION FOR FIVEM • MINECRAFT • ROBLOX</p>
-            <div class="cta-buttons">
-                <a href="#games" class="btn-primary">EXPLORE NOW</a>
-                <a href="https://github.com/Crex9/VexFlex-Anticheat" class="btn-secondary">GITHUB</a>
+            <div class="hero-badge">
+                ⚡ Your choice #1 for Gaming
+            </div>
+            
+            <h1 class="hero-title">
+                Boost your <span class="highlight">gaming experience</span>
+                with the most complete <span class="highlight">anticheat</span>
+                on the market
+            </h1>
+            
+            <p class="hero-subtitle">
+                Advanced protection for FiveM, Minecraft, and Roblox servers with real-time monitoring and intelligent detection algorithms.
+            </p>
+            
+            <div class="hero-features">
+                <div class="feature-check">
+                    <span class="check-icon">✓</span>
+                    Continuously Updated and Stealthy
+                </div>
+                <div class="feature-check">
+                    <span class="check-icon">✓</span>
+                    Ensuring No Global Bans
+                </div>
+            </div>
+            
+            <div class="hero-buttons">
+                <a href="#games" class="btn-primary">
+                    Check Features 📋
+                </a>
+                <a href="#pricing" class="btn-secondary">
+                    Buy Now 🛒
+                </a>
             </div>
         </div>
-        <div class="shield-container">
-            <div class="shield-3d">
-                <div class="shield-face">🛡️</div>
-                <div class="shield-face">⚡</div>
+
+        <!-- Dashboard Preview -->
+        <div class="dashboard-preview">
+            <div class="dashboard-mockup">
+                <div class="dashboard-header">
+                    <div class="dashboard-title">VexFlex Control Panel</div>
+                    <div class="dashboard-controls">
+                        <div class="control-dot"></div>
+                        <div class="control-dot"></div>
+                        <div class="control-dot"></div>
+                    </div>
+                </div>
+                
+                <div class="dashboard-content">
+                    <div class="dashboard-sidebar">
+                        <div class="sidebar-item active">⚙️ General</div>
+                        <div class="sidebar-item">⚔️ Combat</div>
+                        <div class="sidebar-item">🚗 Vehicle</div>
+                        <div class="sidebar-item">📊 Stats</div>
+                    </div>
+                    
+                    <div class="dashboard-section">
+                        <div class="section-title">Players Options</div>
+                        <div class="option-item">
+                            <span class="option-name">Enable Player ESP</span>
+                            <div class="toggle"></div>
+                        </div>
+                        <div class="option-item">
+                            <span class="option-name">Enable NPC ESP</span>
+                            <div class="toggle"></div>
+                        </div>
+                        <div class="option-item">
+                            <span class="option-name">Player Distance</span>
+                            <div class="slider"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="dashboard-section">
+                        <div class="section-title">Vehicle Options</div>
+                        <div class="option-item">
+                            <span class="option-name">Enable Vehicle ESP</span>
+                            <div class="toggle"></div>
+                        </div>
+                        <div class="option-item">
+                            <span class="option-name">Vehicle Distance Check</span>
+                            <div class="slider"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- GAMES SECTION -->
+    <!-- Games Section -->
     <section id="games" class="games">
-        <h2 class="reveal">SUPPORTED GAMES</h2>
+        <div class="section-header">
+            <h2>Supported Platforms</h2>
+            <p>Comprehensive protection across all major gaming platforms</p>
+        </div>
+        
         <div class="games-grid">
-            <div class="game-card reveal">
+            <div class="game-card fade-in">
                 <div class="game-icon">🚗</div>
-                <h3>FIVEM</h3>
-                <p>Advanced real-time monitoring system with AI-powered cheat detection and automatic ban system.</p>
-                <span class="game-status">✅ ACTIVE</span>
+                <h3>FiveM</h3>
+                <p>Advanced real-time monitoring and cheat detection for FiveM servers with automatic ban systems and player tracking.</p>
+                <div class="game-status status-available">✅ Available</div>
             </div>
-            <div class="game-card reveal">
+            
+            <div class="game-card fade-in">
                 <div class="game-icon">⛏️</div>
-                <h3>MINECRAFT</h3>
-                <p>Comprehensive protection against all known exploits, hacks, and cheating methods.</p>
-                <span class="game-status">✅ ACTIVE</span>
+                <h3>Minecraft</h3>
+                <p>Comprehensive protection against all known exploits, hacks, and cheating methods for Minecraft servers.</p>
+                <div class="game-status status-available">✅ Available</div>
             </div>
-            <div class="game-card reveal">
+            
+            <div class="game-card fade-in">
                 <div class="game-icon">🎮</div>
-                <h3>ROBLOX</h3>
-                <p>Cutting-edge detection algorithms designed specifically for Roblox environments.</p>
-                <span class="game-status status-dev">🔥 IN DEV</span>
+                <h3>Roblox</h3>
+                <p>Cutting-edge detection algorithms specifically designed for Roblox experiences and games.</p>
+                <div class="game-status status-development">🔄 In Development</div>
             </div>
         </div>
     </section>
 
-    <!-- FEATURES SECTION -->
+    <!-- Features Section -->
     <section id="features" class="features">
-        <h2 class="reveal">WHY VEXFLEX?</h2>
-        <div class="features-grid">
-            <div class="feature-item reveal">
-                <div class="icon">⚡</div>
-                <h3>LIGHTNING FAST</h3>
-                <p>Zero-lag protection with microsecond response times</p>
+        <div class="features-container">
+            <div class="section-header">
+                <h2>Why Choose VexFlex?</h2>
+                <p>Industry-leading protection with unmatched performance</p>
             </div>
-            <div class="feature-item reveal">
-                <div class="icon">🎯</div>
-                <h3>AI POWERED</h3>
-                <p>Machine learning algorithms for perfect accuracy</p>
-            </div>
-            <div class="feature-item reveal">
-                <div class="icon">🔧</div>
-                <h3>FULLY CUSTOM</h3>
-                <p>Tailored solutions for your specific needs</p>
-            </div>
-            <div class="feature-item reveal">
-                <div class="icon">🛠️</div>
-                <h3>24/7 SUPPORT</h3>
-                <p>Round-the-clock assistance and updates</p>
+            
+            <div class="features-grid">
+                <div class="feature-item fade-in">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Lightning Fast</h3>
+                    <p>Minimal performance impact with maximum protection efficiency</p>
+                </div>
+                
+                <div class="feature-item fade-in">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Precise Detection</h3>
+                    <p>Advanced algorithms for accurate cheat detection and prevention</p>
+                </div>
+                
+                <div class="feature-item fade-in">
+                    <div class="feature-icon">🔧</div>
+                    <h3>Fully Customizable</h3>
+                    <p>Tailored configurations to match your specific server needs</p>
+                </div>
+                
+                <div class="feature-item fade-in">
+                    <div class="feature-icon">🛠️</div>
+                    <h3>24/7 Support</h3>
+                    <p>Professional support team and regular updates</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- FOOTER -->
-    <footer id="contact">
+    <!-- Footer -->
+    <footer>
         <div class="footer-content">
             <div class="social-links">
-                <a href="https://github.com/Crex9">🐙</a>
-                <a href="#">💬</a>
-                <a href="#">📧</a>
-                <a href="#">🎮</a>
+                <a href="https://github.com/Crex9" class="social-link">🐙 GitHub</a>
+                <a href="#" class="social-link">💬 Discord</a>
+                <a href="#" class="social-link">📧 Email</a>
             </div>
-            <p style="font-family: 'Orbitron', monospace; font-size: 1.2rem; color: var(--neon-blue);">© 2024 VEXFLEX ANTICHEAT - NEXT LEVEL PROTECTION</p>
-            <p style="color: #666; margin-top: 1rem;">Developed by Crex9</p>
+            <p class="footer-text">© 2024 VexFlex Anticheat. All rights reserved. | Developed by Crex9</p>
         </div>
     </footer>
 
     <script>
-        // CUSTOM CURSOR
-        const cursor = document.querySelector('.cursor');
-        const trails = [];
-        const trailCount = 10;
-
-        // Create cursor trails
-        for (let i = 0; i < trailCount; i++) {
-            const trail = document.createElement('div');
-            trail.className = 'cursor-trail';
-            document.body.appendChild(trail);
-            trails.push(trail);
-        }
-
-        let mouseX = 0, mouseY = 0;
-
-        document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
+        // Create background elements
+        function createBackgroundElements() {
+            const bgContainer = document.getElementById('bgElements');
             
-            cursor.style.left = mouseX + 'px';
-            cursor.style.top = mouseY + 'px';
-
-            // Update trails with delay
-            trails.forEach((trail, index) => {
-                setTimeout(() => {
-                    trail.style.left = mouseX + 'px';
-                    trail.style.top = mouseY + 'px';
-                }, index * 50);
-            });
-        });
-
-        // MATRIX RAIN EFFECT
-        const canvas = document.querySelector('.matrix-bg');
-        const ctx = canvas.getContext('2d');
-
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-
-        const matrix = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%+-/~{[|`]}";
-        const matrixArray = matrix.split("");
-
-        const fontSize = 10;
-        const columns = canvas.width / fontSize;
-
-        const drops = [];
-        for(let x = 0; x < columns; x++) {
-            drops[x] = 1;
-        }
-
-        function drawMatrix() {
-            ctx.fillStyle = 'rgba(0, 0, 0, 0.04)';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-            ctx.fillStyle = '#00f5ff';
-            ctx.font = fontSize + 'px monospace';
-
-            for(let i = 0; i < drops.length; i++) {
-                const text = matrixArray[Math.floor(Math.random() * matrixArray.length)];
-                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
-                if(drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-                    drops[i] = 0;
-                }
-                drops[i]++;
+            // Create stars
+            for (let i = 0; i < 50; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                bgContainer.appendChild(star);
+            }
+            
+            // Create gradient orbs
+            for (let i = 0; i < 3; i++) {
+                const orb = document.createElement('div');
+                orb.className = 'gradient-orb';
+                orb.style.width = (Math.random() * 300 + 200) + 'px';
+                orb.style.height = orb.style.width;
+                orb.style.left = Math.random() * 100 + '%';
+                orb.style.top = Math.random() * 100 + '%';
+                orb.style.animationDelay = Math.random() * 6 + 's';
+                bgContainer.appendChild(orb);
             }
         }
 
-        setInterval(drawMatrix, 35);
-
-        // FLOATING PARTICLES
-        function createParticles() {
-            const particlesContainer = document.querySelector('.particles');
+        // Scroll animations
+        function handleScrollAnimations() {
+            const fadeElements = document.querySelectorAll('.fade-in');
             
-            setInterval(() => {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * window.innerWidth + 'px';
-                particle.style.animationDelay = Math.random() * 2 + 's';
-                particle.style.animationDuration = (Math.random() * 3 + 5) + 's';
-                
-                // Random colors
-                const colors = ['#00f5ff', '#bf00ff', '#39ff14'];
-                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
-                
-                particlesContainer.appendChild(particle);
-                
-                setTimeout(() => {
-                    particle.remove();
-                }, 8000);
-            }, 300);
-        }
-
-        createParticles();
-
-        // SCROLL ANIMATIONS
-        function revealElements() {
-            const reveals = document.querySelectorAll('.reveal');
-            
-            reveals.forEach(element => {
-                const windowHeight = window.innerHeight;
+            fadeElements.forEach(element => {
                 const elementTop = element.getBoundingClientRect().top;
                 const elementVisible = 150;
                 
-                if (elementTop < windowHeight - elementVisible) {
-                    element.classList.add('active');
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('visible');
                 }
             });
         }
 
-        window.addEventListener('scroll', revealElements);
-
-        // SMOOTH SCROLLING
+        // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -947,141 +865,22 @@
             });
         });
 
-        // GLITCH TEXT EFFECT
-        function glitchText() {
-            const glitchElements = document.querySelectorAll('.glitch');
+        // Initialize everything
+        document.addEventListener('DOMContentLoaded', function() {
+            createBackgroundElements();
+            handleScrollAnimations();
             
-            glitchElements.forEach(element => {
-                setInterval(() => {
-                    if (Math.random() < 0.1) {
-                        element.style.animation = 'none';
-                        setTimeout(() => {
-                            element.style.animation = 'glitch-animation 0.3s';
-                        }, 10);
-                    }
-                }, 2000);
-            });
-        }
-
-        glitchText();
-
-        // NAVIGATION GLOW EFFECT
-        window.addEventListener('scroll', () => {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 100) {
-                nav.style.boxShadow = '0 0 50px rgba(0, 245, 255, 0.8)';
-            } else {
-                nav.style.boxShadow = '0 0 30px rgba(0, 245, 255, 0.5)';
-            }
-        });
-
-        // HOVER SOUND EFFECTS (Visual feedback)
-        document.querySelectorAll('.btn-primary, .btn-secondary, .game-card').forEach(element => {
-            element.addEventListener('mouseenter', () => {
-                element.style.filter = 'brightness(1.2)';
-            });
+            // Add scroll listener
+            window.addEventListener('scroll', handleScrollAnimations);
             
-            element.addEventListener('mouseleave', () => {
-                element.style.filter = 'brightness(1)';
-            });
-        });
-
-        // TYPING EFFECT FOR HERO SUBTITLE
-        function typeWriter() {
-            const text = "NEXT GENERATION PROTECTION FOR FIVEM • MINECRAFT • ROBLOX";
-            const subtitle = document.querySelector('.hero-subtitle');
-            let i = 0;
-            
-            subtitle.textContent = '';
-            
-            function type() {
-                if (i < text.length) {
-                    subtitle.textContent += text.charAt(i);
-                    i++;
-                    setTimeout(type, 50);
-                }
-            }
-            
-            setTimeout(type, 2000);
-        }
-
-        // PARALLAX EFFECT
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const parallax = document.querySelector('.shield-3d');
-            if (parallax) {
+            // Add parallax effect to hero background
+            window.addEventListener('scroll', () => {
+                const scrolled = window.pageYOffset;
+                const parallax = document.querySelector('.bg-elements');
                 const speed = scrolled * 0.5;
-                parallax.style.transform = `translateY(${speed}px) rotateY(${scrolled * 0.1}deg) rotateX(${scrolled * 0.05}deg)`;
-            }
+                parallax.style.transform = `translateY(${speed}px)`;
+            });
         });
-
-        // WINDOW RESIZE HANDLER
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        });
-
-        // EASTER EGG - KONAMI CODE
-        let konamiCode = [];
-        const konamiSequence = [
-            'ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown',
-            'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight',
-            'KeyB', 'KeyA'
-        ];
-
-        document.addEventListener('keydown', (e) => {
-            konamiCode.push(e.code);
-            konamiCode = konamiCode.slice(-konamiSequence.length);
-            
-            if (konamiCode.join(',') === konamiSequence.join(',')) {
-                // Easter egg activated!
-                document.body.style.animation = 'rainbow-bg 2s infinite';
-                setTimeout(() => {
-                    document.body.style.animation = 'none';
-                }, 10000);
-            }
-        });
-
-        // Initialize everything when page loads
-        window.addEventListener('load', () => {
-            typeWriter();
-            revealElements();
-            
-            // Add entrance animation to hero content
-            setTimeout(() => {
-                document.querySelector('.hero-content').style.animation = 'fade-in-up 1s ease-out both';
-            }, 1000);
-        });
-
-        // PERFORMANCE OPTIMIZATION
-        let ticking = false;
-
-        function updateOnScroll() {
-            revealElements();
-            ticking = false;
-        }
-
-        document.addEventListener('scroll', () => {
-            if (!ticking) {
-                requestAnimationFrame(updateOnScroll);
-                ticking = true;
-            }
-        });
-
-        // ADD RAINBOW KEYFRAMES FOR EASTER EGG
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes rainbow-bg {
-                0% { filter: hue-rotate(0deg); }
-                100% { filter: hue-rotate(360deg); }
-            }
-            
-            .hero-title.rainbow {
-                animation: rainbow-bg 2s infinite, gradient-shift 3s infinite, text-glow 2s infinite !important;
-            }
-        `;
-        document.head.appendChild(style);
-
     </script>
 </body>
 </html>
